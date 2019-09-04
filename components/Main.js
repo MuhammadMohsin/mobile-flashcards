@@ -7,7 +7,6 @@ export default class Main extends Component {
     render() {
         return (
             <Container>
-                <Header hasTabs />
                 <Tabs>
                     <Tab heading={
                         <TabHeading>

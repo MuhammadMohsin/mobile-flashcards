@@ -32,6 +32,7 @@ export function addDeck(key) {
         title: key,
         questions: []
     };
+    return {...decks[key]};
 }
 
 export function deleteDeck(key) {
