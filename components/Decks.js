@@ -15,8 +15,8 @@ class Decks extends Component {
     }
 
     static getDerivedStateFromProps(props) {
-        
-        if (props.decks && props.decks.length){
+
+        if (props.decks && props.decks.length) {
             console.log(JSON.stringify(props.decks))
             return { decks: props.decks }
         }
@@ -30,7 +30,7 @@ class Decks extends Component {
                 <Content>
                     <List>
                         {decks.map(deck =>
-                            <ListItem key={deck.title} button onPress={() => { Actions.addCard({ deck }) }}>
+                            <ListItem key={deck.title} button onPress={() => { Actions.deck({ deck }) }}>
                                 <Left>
                                     <Text>{deck.title}</Text>
                                 </Left>

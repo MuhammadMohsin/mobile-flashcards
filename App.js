@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import reducer from './store/reducers/decks';
 import middleware from './store/middleware';
 import Main from './components/Main';
-import AddCard from './components/AddCard';
+import Deck from './components/Deck';
 
 export default function App() {
   const store = createStore(reducer, middleware)
@@ -14,8 +14,8 @@ export default function App() {
     <Provider store={store}>
       <Router>
         <Stack key="root">
-          <Scene key="login" component={Main} title="Flash Cards" />
-          <Scene key="addCard" component={AddCard} title="AddCard" />
+          <Scene key="main" component={Main} title="Flash Cards" />
+          <Scene key="deck" component={Deck} title="Deck" />
         </Stack>
       </Router>
     </Provider>

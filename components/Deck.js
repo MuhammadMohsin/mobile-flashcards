@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { deleteDeck } from '../store/actions/decks';
 
-class AddCard extends Component {
+class Deck extends Component {
 
     handleDelete = () => {
         this.props.dispatch(deleteDeck(this.props.navigation.state.params.deck.title));
-        Actions.login();
+        Actions.pop();
     }
 
     render() {
@@ -63,4 +63,4 @@ var styles = StyleSheet.create({
     }
 })
 
-export default connect()(AddCard);
+export default connect()(Deck);
