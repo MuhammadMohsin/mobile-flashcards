@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { Container, Button, Content, Text, View } from 'native-base';
 import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
+import { deleteDeck } from '../store/actions/decks';
 
-export default class AddCard extends Component {
+class AddCard extends Component {
+
+    handleDelete = () => {
+        this.props.dispatch(deleteDeck(this.props.navigation.state.params.deck.title));
+        Actions.login();
+    }
 
     render() {
         return (
@@ -23,7 +31,7 @@ export default class AddCard extends Component {
                     <Button block success style={styles.addBtn}>
                         <Text>Start Quiz</Text>
                     </Button>
-                    <Button block danger style={styles.addBtn}>
+                    <Button block danger style={styles.addBtn} onPress={this.handleDelete}>
                         <Text>Delete Deck</Text>
                     </Button>
                 </Content>
@@ -54,3 +62,5 @@ var styles = StyleSheet.create({
         padding: 10
     }
 })
+
+export default connect()(AddCard);

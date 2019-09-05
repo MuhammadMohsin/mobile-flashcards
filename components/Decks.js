@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, List, ListItem, Text, Left, Right, Icon } from 'native-base';
+import { Container, Content, List, ListItem, Text, Left, Right, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { getAll } from '../store/actions/decks';
@@ -31,10 +31,10 @@ class Decks extends Component {
                     <List>
                         {decks.map(deck =>
                             <ListItem key={deck.title} button onPress={() => { Actions.addCard({ deck }) }}>
-                                <Left key={deck.title}>
+                                <Left>
                                     <Text>{deck.title}</Text>
                                 </Left>
-                                <Right key={deck.title}>
+                                <Right>
                                     <Icon name="arrow-forward" />
                                 </Right>
                             </ListItem>

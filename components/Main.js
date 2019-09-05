@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Tab, Tabs, TabHeading, Icon, Text } from 'native-base';
+import { Container, Tab, Tabs, TabHeading, Icon, Text } from 'native-base';
 import { connect } from 'react-redux';
 import { setAllDecks } from '../store/actions/decks';
 import { getAllDecks } from '../utils/dataService';
@@ -9,8 +9,10 @@ import AddDeck from './AddDeck';
 class Main extends Component {
 
     componentDidMount() {
-        const decks = getAllDecks();
-        this.props.dispatch(setAllDecks(decks));
+        if (!(this.props.decks && this.props.decks.length)) {
+            const decks = getAllDecks();
+            this.props.dispatch(setAllDecks(decks));
+        }
     }
 
     render() {
@@ -36,4 +38,9 @@ class Main extends Component {
         );
     }
 }
-export default connect()(Main)
+function mapStateToProps(decks) {
+    return {
+        decks: Object.values(decks)
+    }
+}
+export default connect(mapStateToProps)(Main)

@@ -8,11 +8,8 @@ import {
     ADD_NEW_CARD
 } from '../actions/decks';
 
-const initialState = {
-    decks: {}
-}
 let decks = {};
-export default function decksReducer(state = initialState, action) {
+export default function decksReducer(state = {}, action) {
     switch (action.type) {
         case SET_ALL_DECKS:
             return Object.assign({}, {...action.decks})
