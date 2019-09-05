@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Stack, Scene } from 'react-native-router-flux';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import reducer from './store/reducers/decks';
 import middleware from './store/middleware';
 import Main from './components/Main';

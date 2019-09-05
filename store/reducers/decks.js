@@ -6,13 +6,16 @@ import {
     GET_DECK,
     DELETE_DECK,
     ADD_NEW_CARD
-} from '../actions/decks'
+} from '../actions/decks';
 
+const initialState = {
+    decks: {}
+}
 let decks = {};
-export default function decksReducer(state = {}, action) {
+export default function decksReducer(state = initialState, action) {
     switch (action.type) {
         case SET_ALL_DECKS:
-            return Object.assign({}, state, action.decks)
+            return Object.assign({}, {...action.decks})
         case GET_ALL_DECKS:
             return {
                 ...state
@@ -23,14 +26,14 @@ export default function decksReducer(state = {}, action) {
                 title: action.title,
                 questions: []
             };
-            return Object.assign({}, decks);
+            return Object.assign({}, { ...decks });
         case GET_DECK:
             decks = { ...state };
-            return decks[action.title]
+            return decks.decks[action.title]
         case DELETE_DECK:
             decks = { ...state };
             delete decks[action.title]
-            return Object.assign({}, decks);
+            return Object.assign({}, { ...decks });
         case ADD_NEW_CARD:
             decks = { ...state }
             decks[action.title].questions.push(
@@ -39,7 +42,7 @@ export default function decksReducer(state = {}, action) {
                     answer: action.answerText
                 }
             )
-            return Object.assign({}, decks);
+            return Object.assign({}, { ...decks });
 
         default:
             return state

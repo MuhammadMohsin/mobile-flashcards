@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Container, Button, Content, Form, Item, Input, Label, Text } from 'native-base';
 import { StyleSheet } from 'react-native';
-import { addDeck } from '../utils/dataService';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { addDeck } from '../store/actions/decks';
 
-export default class AddDeck extends Component {
+class AddDeck extends Component {
 
   state = {
     title: ''
@@ -12,9 +13,14 @@ export default class AddDeck extends Component {
 
   handleAdd = () => {
     const { title } = this.state;
-    const deck = addDeck(title);
+    this.props.dispatch(addDeck(title))
+    Actions.addCard({
+      deck: {
+        title: title,
+        questions: []
+      }
+    });
     this.setState({ title: '' });
-    Actions.addCard({ deck });
   }
 
   render() {
@@ -26,7 +32,7 @@ export default class AddDeck extends Component {
               <Label>Enter Deck Name</Label>
               <Input
                 value={this.state.title}
-                onChangeText={(text) => this.setState({ title: text })} />
+                onChangeText={(text) => this.setState({ title: text.trim().replace(/ /g,"_") })} />
             </Item>
             <Button block
               onPress={this.handleAdd}
@@ -50,3 +56,5 @@ var styles = StyleSheet.create({
     padding: 10
   }
 })
+
+export default connect()(AddDeck)

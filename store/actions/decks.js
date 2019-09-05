@@ -7,7 +7,7 @@ export const ADD_NEW_CARD = "ADD_NEW_CARD";
 
 export function setAllDecks(decks) {
     return {
-        type: GET_ALL_DECKS,
+        type: SET_ALL_DECKS,
         decks
     }
 }

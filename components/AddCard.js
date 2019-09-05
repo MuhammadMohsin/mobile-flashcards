@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Container, Button, Content, Text, View } from 'native-base';
 import { StyleSheet } from 'react-native';
-import { addCard } from '../utils/dataService';
 
 export default class AddCard extends Component {
+
     render() {
         return (
             <Container style={styles.container}>
