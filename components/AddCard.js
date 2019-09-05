@@ -16,7 +16,7 @@ export default class AddCard extends Component {
                             {this.props.navigation.state.params.deck.questions.length}
                             Cards
                         </Text>
-                    </View>   
+                    </View>
                     <Button block style={styles.addBtn}>
                         <Text>Add Card</Text>
                     </Button>
