@@ -30,7 +30,7 @@ class Decks extends Component {
                 <Content>
                     <List>
                         {decks.map(deck =>
-                            <ListItem key={deck.title} button onPress={() => { Actions.deck({ deck }) }}>
+                            <ListItem key={deck.title} button onPress={() => { Actions.deck({ title: deck.title }) }}>
                                 <Left>
                                     <Text>{deck.title}</Text>
                                 </Left>

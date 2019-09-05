@@ -7,25 +7,45 @@ import { deleteDeck } from '../store/actions/decks';
 
 class Deck extends Component {
 
+    state = {
+        deck: {}
+    }
+
     handleDelete = () => {
-        this.props.dispatch(deleteDeck(this.props.navigation.state.params.deck.title));
+        this.props.dispatch(deleteDeck(this.props.title));
         Actions.pop();
     }
 
+    handleAddCard = (title) => {
+        Actions.addCard({title: title})
+    }
+
+    static getDerivedStateFromProps(props) {
+
+        if (props.decks && Object.values(props.decks).length) {
+            const title = props.title;
+            console.log(JSON.stringify(title))
+            return { deck: props.decks[title] || {} }
+        }
+        return null;
+    }
+
     render() {
+        const { deck } = this.state;
+        console.log()
         return (
             <Container style={styles.container}>
                 <Content>
                     <View style={styles.titleContainer}>
                         <Text style={styles.title}>
-                            {this.props.navigation.state.params.deck.title}
+                            {deck.title}
                         </Text>
                         <Text style={styles.subTitle}>
-                            {this.props.navigation.state.params.deck.questions.length}
+                            {deck.questions.length}
                             Cards
                         </Text>
                     </View>
-                    <Button block style={styles.addBtn}>
+                    <Button block style={styles.addBtn} onPress={()=>this.handleAddCard(deck.title)}>
                         <Text>Add Card</Text>
                     </Button>
                     <Button block success style={styles.addBtn}>
@@ -62,5 +82,9 @@ var styles = StyleSheet.create({
         padding: 10
     }
 })
-
-export default connect()(Deck);
+function mapStateToProps(decks) {
+    return {
+        decks
+    }
+}
+export default connect(mapStateToProps)(Deck);

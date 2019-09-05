@@ -14,12 +14,7 @@ class AddDeck extends Component {
   handleAdd = () => {
     const { title } = this.state;
     this.props.dispatch(addDeck(title))
-    Actions.deck({
-      deck: {
-        title: title,
-        questions: []
-      }
-    });
+    Actions.deck({title: title});
     this.setState({ title: '' });
   }
 

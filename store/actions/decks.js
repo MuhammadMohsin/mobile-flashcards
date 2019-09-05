@@ -34,7 +34,7 @@ export function deleteDeck(key) {
         title: key
     }
 }
-export function addCard(key) {
+export function addCard(key, question, answer) {
     return {
         type: ADD_NEW_CARD,
         title: key,

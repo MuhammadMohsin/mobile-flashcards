@@ -6,6 +6,7 @@ import reducer from './store/reducers/decks';
 import middleware from './store/middleware';
 import Main from './components/Main';
 import Deck from './components/Deck';
+import AddCard from './components/AddCard';
 
 export default function App() {
   const store = createStore(reducer, middleware)
@@ -16,6 +17,7 @@ export default function App() {
         <Stack key="root">
           <Scene key="main" component={Main} title="Flash Cards" />
           <Scene key="deck" component={Deck} title="Deck" />
+          <Scene key="addCard" component={AddCard} title="Add Card" />
         </Stack>
       </Router>
     </Provider>
