@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Content, List, ListItem, Text, Left, Right, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import { StyleSheet } from 'react-native';
 import { getAll } from '../store/actions/decks';
 
 class Decks extends Component {
@@ -14,17 +15,23 @@ class Decks extends Component {
         this.props.dispatch(getAll());
     }
 
-    static getDerivedStateFromProps(props) {
+    static getDerivedStateFromProps(props, state) {
 
         if (props.decks && props.decks.length) {
-            console.log(JSON.stringify(props.decks))
             return { decks: props.decks }
         }
+        else if (props.decks && props.decks.length !== state.decks)
+            return { decks: [] }
         return null;
     }
 
     render() {
         const { decks } = this.state;
+        if (!decks.length)
+            return (
+                <Text style={styles.warningMsg}>
+                    You do not have any deck in your list!
+                </Text>)
         return (
             <Container>
                 <Content>
@@ -45,6 +52,13 @@ class Decks extends Component {
         );
     }
 }
+const styles = StyleSheet.create({
+    warningMsg: {
+        fontSize: 18,
+        textAlign: 'center',
+        marginTop: 20
+    }
+})
 function mapStateToProps(decks) {
     return {
         decks: Object.values(decks)

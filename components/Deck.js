@@ -21,8 +21,7 @@ class Deck extends Component {
     }
 
     static getDerivedStateFromProps(props) {
-
-        if (props.decks && Object.values(props.decks).length) {
+        if (props.decks && Object.values( props.decks).length ) {
             const title = props.title;
             console.log(JSON.stringify(title))
             return { deck: props.decks[title] || {} }
@@ -32,7 +31,6 @@ class Deck extends Component {
 
     render() {
         const { deck } = this.state;
-        console.log()
         return (
             <Container style={styles.container}>
                 <Content>
@@ -41,8 +39,9 @@ class Deck extends Component {
                             {deck.title}
                         </Text>
                         <Text style={styles.subTitle}>
-                            {deck.questions.length}
-                            Cards
+                            {deck.questions && deck.questions.length?
+                            deck.questions.length + " ": 0 + " "}
+                             Cards
                         </Text>
                     </View>
                     <Button block style={styles.addBtn} onPress={()=>this.handleAddCard(deck.title)}>
@@ -60,7 +59,7 @@ class Deck extends Component {
     }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         padding: 10,
     },
