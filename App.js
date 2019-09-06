@@ -16,10 +16,10 @@ export default function App() {
     <Provider store={store}>
       <Router>
         <Stack key="root">
-          <Scene key="quiz" component={Quiz} title="Quiz" />
           <Scene key="main" component={Main} title="Flash Cards" />
           <Scene key="deck" component={Deck} title="Deck" />
           <Scene key="addCard" component={AddCard} title="Add Card" />
+          <Scene key="quiz" component={Quiz} title="Quiz" />
         </Stack>
       </Router>
     </Provider>

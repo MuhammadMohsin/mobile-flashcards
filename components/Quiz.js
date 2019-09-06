@@ -8,27 +8,7 @@ import Result from './Result';
 class Quiz extends Component {
 
   state = {
-    deck: {
-      title: 'React',
-      questions: [
-        {
-          question: 'What is React?',
-          answer: 'A library for managing user interfaces'
-        },
-        {
-          question: 'Where do you make Ajax requests in React?',
-          answer: 'The componentDidMount lifecycle event'
-        },
-        {
-          question: 'What is React?',
-          answer: 'A library for managing user interfaces'
-        },
-        {
-          question: 'Where do you make Ajax requests in React?',
-          answer: 'The componentDidMount lifecycle event'
-        }
-      ]
-    },
+    deck: {},
     questionIndex: 0,
     showAns: false,
     showResult: false,

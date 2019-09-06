@@ -27,7 +27,6 @@ class Deck extends Component {
     static getDerivedStateFromProps(props) {
         if (props.decks && Object.values( props.decks).length ) {
             const title = props.title;
-            console.log(JSON.stringify(title))
             return { deck: props.decks[title] || {} }
         }
         return null;
