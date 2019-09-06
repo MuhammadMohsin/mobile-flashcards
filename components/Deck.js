@@ -20,6 +20,10 @@ class Deck extends Component {
         Actions.addCard({title: title})
     }
 
+    handleStartQuiz = (title) =>{
+        Actions.quiz({title: title});
+    }
+
     static getDerivedStateFromProps(props) {
         if (props.decks && Object.values( props.decks).length ) {
             const title = props.title;
@@ -47,7 +51,7 @@ class Deck extends Component {
                     <Button block style={styles.addBtn} onPress={()=>this.handleAddCard(deck.title)}>
                         <Text>Add Card</Text>
                     </Button>
-                    <Button block success style={styles.addBtn}>
+                    <Button block success style={styles.addBtn} onPress={()=>this.handleStartQuiz(deck.title)}>
                         <Text>Start Quiz</Text>
                     </Button>
                     <Button block danger style={styles.addBtn} onPress={this.handleDelete}>
