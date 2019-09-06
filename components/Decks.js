@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Content, List, ListItem, Text, Left, Right, Icon } from 'native-base';
+import { Container, Content, List, ListItem, Text, Body, Right, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { StyleSheet } from 'react-native';
@@ -38,9 +38,13 @@ class Decks extends Component {
                     <List>
                         {decks.map(deck =>
                             <ListItem key={deck.title} button onPress={() => { Actions.deck({ title: deck.title }) }}>
-                                <Left>
-                                    <Text>{deck.title}</Text>
-                                </Left>
+                                <Body>
+                                    <Text style={styles.title}>{deck.title}</Text>
+                                    <Text style={styles.cardCount}>{deck.questions.length > 1 ?
+                                        deck.questions.length  + " Cards":
+                                        deck.questions.length  + " Card"}
+                                    </Text>
+                                </Body>
                                 <Right>
                                     <Icon name="arrow-forward" />
                                 </Right>
@@ -57,6 +61,13 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         marginTop: 20
+    },
+    title: {
+        fontSize: 18
+    },
+    cardCount: {
+        fontSize: 13,
+        color: '#545454'
     }
 })
 function mapStateToProps(decks) {
