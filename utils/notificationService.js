@@ -1,11 +1,11 @@
 import { AsyncStorage } from 'react-native';
 import * as Permissions from 'expo-permissions';
-
+import { Notifications } from 'expo';
 const NOTIFICATION_KEY = 'flashCardNotifications'
 
 export function resetNotifications() {
     return AsyncStorage.removeItem(NOTIFICATION_KEY)
-        .then(Permissions.cancelAllScheduledNotificationsAsync)
+        .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
 export function registerNotification() {
@@ -16,14 +16,13 @@ export function registerNotification() {
                 Permissions.askAsync(Permissions.NOTIFICATIONS)
                     .then(({ status }) => {
                         if (status === 'granted') {
-                            console.log(JSON.stringify(Permissions))
-                            Permissions.cancelAllScheduledNotificationsAsync()
+                            Notifications.cancelAllScheduledNotificationsAsync()
                             const nextReminder = new Date()
                             nextReminder.setDate(nextReminder.getDate() + 1)
                             nextReminder.setHours(20)
                             nextReminder.setMinutes(0)
 
-                            Permissions.scheduleLocalNotificationAsync(
+                            Notifications.scheduleLocalNotificationAsync(
                                 {
                                     title: 'Quiz is waiting for you!',
                                     body: "Want to learn something new today? Just come up!",
