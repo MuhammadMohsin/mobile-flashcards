@@ -8,8 +8,9 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "expo": "^34.0.1",
+    "expo": "^34.0.0",
     "expo-font": "~6.0.1",
+    "expo-permissions": "~6.0.0",
     "native-base": "^2.13.5",
     "react": "16.8.3",
     "react-dom": "^16.8.6",

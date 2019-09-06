@@ -1,9 +1,12 @@
 import React from 'react';
 import { Container, Button, Content, Text, View } from 'native-base';
 import { StyleSheet } from 'react-native';
+import { clearLocalNotification, setLocalNotification } from '../utils/notificationService';
 
 export default function Quiz({ goBack, restartQuiz, totalCorrectAns, totalQuestions }) {
 
+    clearLocalNotification()
+        .then(setLocalNotification);
     return (
         <Container style={styles.container}>
             <Content>
